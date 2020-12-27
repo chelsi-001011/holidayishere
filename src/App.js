@@ -32,7 +32,8 @@ function fetchThisMonthHd(month)
     console.log(response.data);
     var hdlist=response.data.holidays;
     hdlist.forEach(function (hd){
-      html+='<li>'+hd.name+'    '+hd.date+'</li>';
+      html += '<li class="list-group-item d-flex justify-content-between align-items-center">' + hd.name + '    ' +'<span class="badge badge-primary badge-pill">' +hd.date +' </span>'+ '</li>';
+      
     });
     document.getElementById("holidays").innerHTML = html;
   });
@@ -46,6 +47,7 @@ function fetchRecipe(hd){
     var recipes=response.data.hits;
     console.log(recipes);
     recipes.forEach(function (recipe){
+
       html+='<h4>'+recipe.recipe.label+'</h4><div class="recipe"><img className="recipeImg" src='+recipe.recipe.image+' width="200" height="200"><a class="btn btn-danger recipeLink" target="_blank" href="'+recipe.recipe.shareAs+'">Recipe</a></div>';
     });
     console.log(html);
@@ -68,9 +70,15 @@ const Today = () => {
 
 const ThisMonth = () =>{
   fetchThisMonthHd(currDate.getMonth()+1);
-  return(
+  return (
+    <div >
+      <h1 className="upcomhol">Upcoming holidays</h1>
     <section id="holidays">
-    </section>
+      
+      
+
+      </section>
+      </div>
   )
 }
 
