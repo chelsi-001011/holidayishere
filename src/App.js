@@ -1,21 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
 import { HolidayAPI } from 'holidayapi';
 import axios from 'axios';
 
-const currDate = new Date();
 
+const currDate = new Date();
+// const holidaykey = '';
+const recipeAppId = '';
+const recipeAppKey= '';
 function addToHtml(add){
   document.getElementById("todaysHd").innerHTML = add;
 }
 
 function fetchHoliday(month,date)
 {
- axios.get("https://holidayapi.com/v1/holidays?pretty&key="+{holidaykey}+"&country=IN&month="+month+"&day="+date+"&year=2019").then(function (response) {
+ axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&day="+date+"&year=2019").then(function (response) {
     // handle success
     // console.log(response.data);
-    if(response.data.holidays.length != 0)
-    { var hdlist = response.data.holidays;
+    if(response.data.holidays.length !== 0)
+    {
+      var hdlist = response.data.holidays;
       addToHtml(hdlist[0].name);
     }
     else{
@@ -27,7 +30,7 @@ function fetchHoliday(month,date)
 function fetchThisMonthHd(month)
 {
   var html="";
-  axios.get("https://holidayapi.com/v1/holidays?pretty&key="+{holidaykey}+"&country=IN&month="+month+"&year=2019").then(function (response) {
+  axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&year=2019").then(function (response) {
     // handle success
     console.log(response.data);
     var hdlist=response.data.holidays;
@@ -87,7 +90,7 @@ function fetchGifts(){
 
 function fetchRecipe(hd){
   var html="";
-  axios.get("https://api.edamam.com/search?app_id="+{recipeAppId}+"&app_key="+{recipeAppKey}+"&q="+hd+"&from=0&to=3").then(function (response) {
+  axios.get("https://api.edamam.com/search?app_id=538072c6&app_key=322124791ed2485a3848caa340c429c2&q="+hd+"&from=0&to=3").then(function (response) {
     // handle success
     console.log(response.data);
     var recipes=response.data.hits;
@@ -101,6 +104,7 @@ function fetchRecipe(hd){
 }
 
 const Gift = () =>{
+  fetchGifts();
   return(
     <section id="gifts">
       {fetchGifts()}
@@ -109,14 +113,20 @@ const Gift = () =>{
 }
 
 const Today = () => {
+  fetchHoliday(currDate.getMonth()+1,currDate.getDate()+1);  
   return(
     <section className="today">
-      <div id="todaysHd"></div>
+      
+      <div id="todaysHd">
+           
+      </div>
+
     </section>
   );
 }
 
 const ThisMonth = () =>{
+  fetchThisMonthHd(currDate.getMonth()+1);
   return(
     <section id="holidays">
     </section>
@@ -133,17 +143,57 @@ const Recipe = () =>{
   );
 }
 
-function App() {
-  // fetchHoliday(currDate.getMonth()+1,currDate.getDate()+1);  
-  // fetchThisMonthHd(currDate.getMonth()+1);
-  // fetchGifts();
+const Heading = () =>{
   return (
-    <div className="App">
+    <section className="header">
+      <h1>Here for the holidays</h1>
+    </section>
+  );
+}
+
+function App() {
+  return (
+    <div class="snowflakes" aria-hidden="true">
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❄
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❄
+  </div>
+  <div class="snowflake">
+  ❅
+  </div>
+  <div class="snowflake">
+  ❆
+  </div>
+  <div class="snowflake">
+  ❄
+  </div>
+
+      <div className="App">
+        
+      <Heading></Heading>
       <Today></Today>
       <ThisMonth></ThisMonth>
       <Gift></Gift>
       <Recipe></Recipe>
-    </div>
+      </div>
+      </div>
   );
 }
 
