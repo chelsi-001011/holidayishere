@@ -12,6 +12,10 @@ li {
   color: purple;
   font-family: "Lato", sans-serif;
 }
+.upcomhol{
+  color:green;
+ font-family: "Courgette", cursive;
+}
 
 .today {
   font-family: "Lato", sans-serif;
@@ -27,6 +31,11 @@ li {
 }
 #todaysHd {
   color: #34a65f;
+  font-family: "Courgette", cursive;
+}
+#upcomhol {
+  color: #34a65f;
+  font-family: "Courgette", cursive;
 }
 /********Background Snow**********/
 body {
@@ -206,3 +215,5 @@ body {
   font-family: "Raleway", sans-serif;
   color: #000;
 }
+
+
