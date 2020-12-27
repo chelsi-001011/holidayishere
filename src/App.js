@@ -43,8 +43,9 @@ function fetchGreetings(hd){
   var html="";
   axios.get("/api/v1/"+"christmas").then(function(response){
     var greeting = response.data.greetings;
+     html += '<h2 class="share" >Share Greetings with your friends and family</h2>';
     greeting.forEach(function(g){
-        html+='<li>'+g+'</li>';
+        html+='<li>'+g+'</li><br><br>';
     });
   document.getElementById("greetings").innerHTML = html;
   });
@@ -54,8 +55,10 @@ function fetchEcards(hd){
   var html="";
   axios.get("/api/v1/"+hd).then(function(response){
     var images = response.data.cardUrls;
-    images.forEach(function(i){
-        html+='<li><img src="'+i+'" width="200" height="200"></li>';
+    html += '<h2 class="share" >Share Ecards with your friends and family</h2>';
+    images.forEach(function (i) {
+      
+        html+='<li><img src="'+i+'" width="200" height="200"></li><br><br>';
     });
   document.getElementById("image").innerHTML = html;
   });
@@ -105,7 +108,7 @@ const Recipe = () =>{
   fetchRecipe("Christmas");
   return (
     <div>
-      <h1 className="upcomhol">Holiday Recipe's</h1>
+      <h1 className="upcomhol">Holiday Recipe's  <i class="fas fa-utensils"></i></h1>
       <section id="food">
     </section>
     </div>
@@ -115,7 +118,7 @@ const Recipe = () =>{
 const Heading = () =>{
   return (
     <section className="header">
-      <h1>Here for the holidays</h1>
+      <h1><i class="fas fa-snowman"></i> Here for the holidays  <i class="fas fa-candy-cane"></i> </h1>
     </section>
   );
 }
@@ -124,7 +127,7 @@ const Greetings = () =>{
   fetchGreetings("christmas");
   return (
     <div>
-      <h1 className="upcomhol">Greetings</h1>
+      <h1 className="upcomhol">Greetings  <i class="fas fa-handshake"></i></h1>
     <section className="greetings" id="greetings">
 
     </section>
@@ -136,9 +139,9 @@ const Ecards = () =>{
   fetchEcards("christmas");
   return (
     <div>
-      <h1 className="upcomhol">Ecards</h1>
-    <section className="greetings" id="image">
-
+      <h1 className="upcomhol">Ecards <i class="fad fa-gift-card"></i></h1>
+    <section className="ecards" id="image">
+               
     </section>
     </div>
   );
