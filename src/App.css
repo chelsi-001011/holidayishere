@@ -33,6 +33,10 @@ body {
   background: #8f0303;
 }
 /***** CSS grid *******/
+h2 {
+  margin-bottom: 40px;
+  color: #0f8a5f;
+}
 #holidays {
   grid-area: thismonth;
   text-align: center;
@@ -58,13 +62,16 @@ body {
 #food {
   grid-area: recipe;
   text-align: center;
-  color: #000;
+  color: #34a65f;
   border-radius: 5px;
   padding: 15px;
   margin: 0 auto;
   background-color: white;
   box-shadow: 2px 2px 2px white;
   font-size: large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .grid {
   margin: 15px;
@@ -73,7 +80,23 @@ body {
   grid-row-gap: 15px;
   grid-column-gap: 15px;
 }
-
+/***** Recipe *****/
+a {
+  padding: 10px;
+}
+.recipe {
+  margin: 40px 0;
+  padding: 10px;
+  border: 1px green solid;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 320px;
+}
+.recipeLink {
+  float: right;
+}
 /* customizable snowflake styling */
 .snowflake {
   color: white;
