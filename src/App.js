@@ -32,24 +32,25 @@ function fetchThisMonthHd(month)
     console.log(response.data);
     var hdlist=response.data.holidays;
     hdlist.forEach(function (hd){
-      html+='<li>'+hd.name+'    '+hd.date+'</li>';
+      html += '<li class="list-group-item d-flex justify-content-between align-items-center">' + hd.name + '    ' +'<span class="badge badge-primary badge-pill">' +hd.date +' </span>'+ '</li>';
+      
     });
-    document.getElementById("holidays").innerHTML += html;
+    document.getElementById("holidays").innerHTML = html;
   });
 }
 
 function fetchRecipe(hd){
-  var html="";
+  var html="<h2>Holiday Recipe's</h2>";
   axios.get("https://api.edamam.com/search?app_id=88173303&app_key=5ca8f53bc027a3581bfa4d44343ecbc9&q="+hd+"&from=0&to=3").then(function (response) {
     // handle success
     console.log(response.data);
     var recipes=response.data.hits;
     console.log(recipes);
     recipes.forEach(function (recipe){
-      html+='<div className="recipe"><div className="recipeLabel">'+recipe.recipe.label+'</div><button className="recipeLink"><a target="_blank" href="'+recipe.recipe.shareAs+'">Recipe</a></div></button>';
+      html+='<div class="recipe"><div className="recipeLabel">'+recipe.recipe.image+'</div><a class="btn btn-danger recipeLink" target="_blank" href="'+recipe.recipe.shareAs+'">Recipe</a></div></div>';
     });
     console.log(html);
-    document.getElementById("food").innerHTML += html;
+    document.getElementById("food").innerHTML = html;
   });
 }
 
@@ -74,9 +75,15 @@ const Today = () => {
 
 const ThisMonth = () =>{
   fetchThisMonthHd(currDate.getMonth()+1);
-  return(
+  return (
+    <div >
+      <h1 className="upcomhol">Upcoming holidays</h1>
     <section id="holidays">
-    </section>
+      
+      
+
+      </section>
+      </div>
   )
 }
 
