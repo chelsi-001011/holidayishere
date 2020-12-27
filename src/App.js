@@ -4,54 +4,8 @@ import axios from 'axios';
 
 const currDate = new Date();
 
-function fetchGifts(){
-  var gifthtml="";
-  var list = ["For the brunch addict: Dash Mini Waffle Maker",
-              "For the pet owner: Pooch Selfie",
-              " For the couple: A custom portrait",
-              "For the person who's always cold: The Comfy(Half Blanket, Half Hoodie)",
-              "For the true crime junkie: Hunt A Killer",
-              "For the bookworm: 100 Books Scratch-Off Poster",
-              "For the adventurer: National Parks Pass",
-              "For the one who's still working remotely: A work from home survival kit",
-              "For the person who's always on their phone: PhoneSoap Phone Sanitizer ",
-              "For the one who loves game night: What Do You Meme?",
-              "For the eco-conscious one: FinalStraw",
-              "For the homeowner: Monogram nails",
-              "For the person who needs a massage: Shiatsu Back and Neck Massager",
-              "For the aspiring plant parent: A live plant from The Sill",
-              "For the person who likes their beauty sleep: Slip Silk Pillowcase",
-              "For the one who enjoys a hot cuppa: Manatea Tea Infuser",
-              "For the dog-obsessed: Anthropologie Dog Dessert Plates",
-              "For the one who needs coffee 24/7: Ember Temperature Control Smart Mug",
-
-              //Office
-              "For the one with perfect makeup: Mario Badescu Facial Spray",
-              "For the one with who loves hot coffee: Zojirushi Stainless Steel Mug",
-              "For the one who goes through a lot of tissues: Como Trash Bin",
-              "For the one who is way too into candles: Diptyque Feu de Bois Candle",
-              "For the one who's always up for happy hour: Corkcicle Insulated Wine Tumbler",
-              "For the one who always gets caught in the rain: Davek Solo Umbrella",
-              "For the one who invites you to lunch: Smoko Dumpling Light",
-              "For the one who remembers to pack lunch: Monbento Original Bento Box",
-              "For the one complaining about dry skin: Airomé Serenity Medium Diffuser",
-              "For the one with too much stuff to carry: Baggu Standard Reusable Shopping Bag",
-              "For the one who's always cold: DII Rustic Farmhouse Cotton Chevron Blanket Throw",
-              "For the one with a major sweet tooth: Cheryl's Happy Holidays Gift Tin"
-            ];
-            console.log(list[0]);
-  for(var i=0;i<3;i++)
-  {
-    var x = Math.random()*list.length;
-    console.log(x);
-    gifthtml+='<li>'+list[Math.floor(x)]+'</li>';
-  }
-  // document.getElementById("gifts").innerHTML += gifthtml;
-  document.write(gifthtml);
-}
-
 function addToHtml(add){
-  document.getElementById("todaysHd").innerHTML = add;
+  document.getElementById("todaysHd").innerHTML = "<h2>Today's Holiday :</h2>"+add;
 }
 
 function fetchHoliday(month,date)
@@ -92,7 +46,7 @@ function fetchRecipe(hd){
     var recipes=response.data.hits;
     console.log(recipes);
     recipes.forEach(function (recipe){
-      html+='<div className="recipe"><div className="recipeLabel">'+recipe.recipe.label+'</div><div className="recipeLink"><a src="'+recipe.recipe.shareAs+'">Recipe</a></div></div>';
+      html+='<div className="recipe"><div className="recipeLabel">'+recipe.recipe.label+'</div><button className="recipeLink"><a target="_blank" href="'+recipe.recipe.shareAs+'">Recipe</a></div></button>';
     });
     console.log(html);
     document.getElementById("food").innerHTML += html;
@@ -182,9 +136,8 @@ function App() {
       <Heading></Heading>
       <Today></Today>
       <div className="grid">
-         <section id="gifts">
-           {fetchGifts()}
-        </section>
+         {/* <section id="gifts">
+        </section> */}
         <Recipe></Recipe>
         <ThisMonth></ThisMonth>
       </div>
