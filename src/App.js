@@ -85,12 +85,12 @@ function fetchGifts(){
     html+='<li>'+list[Math.floor(x)]+'</li>';
   }
   console.log(html); 
-  document.write(html);
+  document.getElementById("gifts").innerHTML += html;
 }
 
 function fetchRecipe(hd){
   var html="";
-  axios.get("https://api.edamam.com/search?app_id=538072c6&app_key=322124791ed2485a3848caa340c429c2&q="+hd+"&from=0&to=3").then(function (response) {
+  axios.get("https://api.edamam.com/search?app_id=88173303&app_key=5ca8f53bc027a3581bfa4d44343ecbc9&q="+hd+"&from=0&to=3").then(function (response) {
     // handle success
     console.log(response.data);
     var recipes=response.data.hits;
@@ -107,7 +107,6 @@ const Gift = () =>{
   fetchGifts();
   return(
     <section id="gifts">
-      {fetchGifts()}
     </section>
   );
 }
@@ -153,47 +152,47 @@ const Heading = () =>{
 
 function App() {
   return (
-    <div class="snowflakes" aria-hidden="true">
-  <div class="snowflake">
-  ❅
-  </div>
-  <div class="snowflake">
-  ❅
-  </div>
-  <div class="snowflake">
-  ❆
-  </div>
-  <div class="snowflake">
-  ❄
-  </div>
-  <div class="snowflake">
-  ❅
-  </div>
-  <div class="snowflake">
-  ❆
-  </div>
-  <div class="snowflake">
-  ❄
-  </div>
-  <div class="snowflake">
-  ❅
-  </div>
-  <div class="snowflake">
-  ❆
-  </div>
-  <div class="snowflake">
-  ❄
-  </div>
-
-      <div className="App">
-        
+    <div className="App">
+      <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake">
+    ❅
+    </div>
+    <div class="snowflake">
+    ❅
+    </div>
+    <div class="snowflake">
+    ❆
+    </div>
+    <div class="snowflake">
+    ❄
+    </div>
+    <div class="snowflake">
+    ❅
+    </div>
+    <div class="snowflake">
+    ❆
+    </div>
+    <div class="snowflake">
+    ❄
+    </div>
+    <div class="snowflake">
+    ❅
+    </div>
+    <div class="snowflake">
+    ❆
+    </div>
+    <div class="snowflake">
+    ❄
+    </div>
+    </div>  
       <Heading></Heading>
       <Today></Today>
-      <ThisMonth></ThisMonth>
-      <Gift></Gift>
-      <Recipe></Recipe>
+      <div className="grid">
+        <Gift></Gift>
+        <Recipe></Recipe>
+        <ThisMonth></ThisMonth>
       </div>
-      </div>
+    </div>
   );
 }
 
