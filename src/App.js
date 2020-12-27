@@ -32,7 +32,7 @@ function fetchThisMonthHd(month)
     console.log(response.data);
     var hdlist=response.data.holidays;
     hdlist.forEach(function (hd){
-      html += '<li class="list-group-item d-flex justify-content-between align-items-center">' + hd.name + '    ' +'<span class="badge badge-primary badge-pill">' +hd.date +' </span>'+ '</li>';
+      html += '<li class="list-group-item d-flex justify-content-between align-items-center">'+hd.name+ '<span class="badge badge-primary badge-pill">' +hd.date +' </span></li>';
       
     });
     document.getElementById("holidays").innerHTML = html;
@@ -40,7 +40,7 @@ function fetchThisMonthHd(month)
 }
 
 function fetchRecipe(hd){
-  var html="<h2>Holiday Recipe's</h2>";
+  var html="";
   axios.get("https://api.edamam.com/search?app_id=88173303&app_key=5ca8f53bc027a3581bfa4d44343ecbc9&q="+hd+"&from=0&to=3").then(function (response) {
     // handle success
     // console.log(response.data);
@@ -85,9 +85,11 @@ const ThisMonth = () =>{
 const Recipe = () =>{
   fetchRecipe("Hanukkah");
   return (
-    <section id="food">
-
+    <div>
+      <h1 className="upcomhol">Holiday Recipe's</h1>
+      <section id="food">
     </section>
+    </div>
   );
 }
 

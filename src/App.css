@@ -12,9 +12,9 @@ li {
   color: purple;
   font-family: "Lato", sans-serif;
 }
-.upcomhol{
-  color:green;
- font-family: "Courgette", cursive;
+.upcomhol {
+  color: white;
+  font-family: "Courgette", cursive;
 }
 
 .today {
@@ -34,7 +34,7 @@ li {
   font-family: "Courgette", cursive;
 }
 #upcomhol {
-  color: #34a65f;
+  color: white;
   font-family: "Courgette", cursive;
 }
 /********Background Snow**********/
@@ -238,5 +238,3 @@ a {
   font-family: "Raleway", sans-serif;
   color: #000;
 }
-
-
