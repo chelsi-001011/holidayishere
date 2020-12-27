@@ -30,7 +30,8 @@ function fetchThisMonthHd(month)
   axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&year=2019").then(function (response) {
     // handle success
     // console.log(response.data);
-    var hdlist=response.data.holidays;
+    var hdlist = response.data.holidays;
+    
     hdlist.forEach(function (hd){
       html += '<li class=" list-group-item d-flex justify-content-between align-items-center">'+hd.name+ '<span class="badge badge-danger badge-pill">' +hd.date +' </span></li>';
       
@@ -43,6 +44,7 @@ function fetchGreetings(hd){
   var html="";
   axios.get("/api/v1/"+"christmas").then(function(response){
     var greeting = response.data.greetings;
+    html+='<button onClick="window.location.reload();" class="btn btn-danger" >Get Different Greetings</button>'
      html += '<h2 class="share" >Share Greetings with your friends and family</h2>';
     greeting.forEach(function(g){
         html+='<li>'+g+'</li><br><br>';
@@ -55,6 +57,8 @@ function fetchEcards(hd){
   var html="";
   axios.get("/api/v1/"+hd).then(function(response){
     var images = response.data.cardUrls;
+    html+='<button onClick="window.location.reload();" class="btn btn-danger" >Get Different Ecards</button>'
+    
     html += '<h2 class="share" >Share Ecards with your friends and family</h2>';
     images.forEach(function (i) {
       
@@ -69,7 +73,8 @@ function fetchRecipe(hd){
   axios.get("https://api.edamam.com/search?app_id=88173303&app_key=5ca8f53bc027a3581bfa4d44343ecbc9&q="+hd+"&from=0&to=3").then(function (response) {
     // handle success
     // console.log(response.data);
-    var recipes=response.data.hits;
+    var recipes = response.data.hits;
+    
     // console.log(recipes);
     recipes.forEach(function (recipe){
 
