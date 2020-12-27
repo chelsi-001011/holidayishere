@@ -30,7 +30,8 @@ function fetchThisMonthHd(month)
   axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&year=2019").then(function (response) {
     // handle success
     // console.log(response.data);
-    var hdlist=response.data.holidays;
+    var hdlist = response.data.holidays;
+    
     hdlist.forEach(function (hd){
       html += '<li class=" list-group-item d-flex justify-content-between align-items-center">'+hd.name+ '<span class="badge badge-danger badge-pill">' +hd.date +' </span></li>';
       
@@ -43,8 +44,10 @@ function fetchGreetings(hd){
   var html="";
   axios.get("/api/v1/"+"christmas").then(function(response){
     var greeting = response.data.greetings;
+    html+='<button onClick="window.location.reload();" class="btn btn-danger" >Get Different Greetings</button>'
+     html += '<h2 class="share" >Share Greetings with your friends and family</h2>';
     greeting.forEach(function(g){
-        html+='<li>'+g+'</li>';
+        html+='<li>'+g+'</li><br><br>';
     });
   document.getElementById("greetings").innerHTML = html;
   });
@@ -54,8 +57,12 @@ function fetchEcards(hd){
   var html="";
   axios.get("/api/v1/"+hd).then(function(response){
     var images = response.data.cardUrls;
-    images.forEach(function(i){
-        html+='<li><img src="'+i+'" width="200" height="200"></li>';
+    html+='<button onClick="window.location.reload();" class="btn btn-danger" >Get Different Ecards</button>'
+    
+    html += '<h2 class="share" >Share Ecards with your friends and family</h2>';
+    images.forEach(function (i) {
+      
+        html+='<li><img src="'+i+'" width="200" height="200"></li><br><br>';
     });
   document.getElementById("image").innerHTML = html;
   });
@@ -66,7 +73,8 @@ function fetchRecipe(hd){
   axios.get("https://api.edamam.com/search?app_id=88173303&app_key=5ca8f53bc027a3581bfa4d44343ecbc9&q="+hd+"&from=0&to=3").then(function (response) {
     // handle success
     // console.log(response.data);
-    var recipes=response.data.hits;
+    var recipes = response.data.hits;
+    
     // console.log(recipes);
     recipes.forEach(function (recipe){
 
@@ -105,7 +113,7 @@ const Recipe = () =>{
   fetchRecipe("Christmas");
   return (
     <div>
-      <h1 className="upcomhol">Holiday Recipe's</h1>
+      <h1 className="upcomhol">Holiday Recipe's  <i class="fas fa-utensils"></i></h1>
       <section id="food">
     </section>
     </div>
@@ -115,7 +123,7 @@ const Recipe = () =>{
 const Heading = () =>{
   return (
     <section className="header">
-      <h1>Here for the holidays</h1>
+      <h1><i class="fas fa-snowman"></i> Here for the holidays  <i class="fas fa-candy-cane"></i> </h1>
     </section>
   );
 }
@@ -124,7 +132,7 @@ const Greetings = () =>{
   fetchGreetings("christmas");
   return (
     <div>
-      <h1 className="upcomhol">Greetings</h1>
+      <h1 className="upcomhol">Greetings  <i class="fas fa-handshake"></i></h1>
     <section className="greetings" id="greetings">
 
     </section>
@@ -136,9 +144,9 @@ const Ecards = () =>{
   fetchEcards("christmas");
   return (
     <div>
-      <h1 className="upcomhol">Ecards</h1>
-    <section className="greetings" id="image">
-
+      <h1 className="upcomhol">Ecards <i class="fad fa-gift-card"></i></h1>
+    <section className="ecards" id="image">
+               
     </section>
     </div>
   );

@@ -11,12 +11,26 @@ h1 {
 li {
   color: green;
   font-family: "Lato", sans-serif;
+  text-decoration: none ;
+  list-style: none;
 }
 .upcomhol {
-  color: white;
+  color:white;
   font-family: "Courgette", cursive;
 }
-
+.ecards{
+  text-align: center;
+  color: #34a65f;
+  border-radius: 5px;
+  padding: 4px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 2px 2px 2px white;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 .today {
   font-family: "Lato", sans-serif;
   width: 70%;
@@ -30,7 +44,7 @@ li {
   font-size: large;
 }
 #todaysHd {
-  color: #34a65f;
+  color: green;
   font-family: "Courgette", cursive;
 }
 #upcomhol {
@@ -42,6 +56,11 @@ body {
   background: #8f0303;
 }
 /***** CSS grid *******/
+
+.share{
+  color: #0f8a5f;
+  font-family: "Courgette", cursive;
+}
 h2 {
   margin-bottom: 40px;
   color: #0f8a5f;
@@ -121,8 +140,11 @@ a {
 }
 .grid2 {
   display: grid;
-  grid-template-rows: auto;
-  grid-template-columns: 30% 70%;
+  grid-template-rows: 70% ;
+  grid-column-gap: 15%;
+  grid-template-columns: 40% 40%;
+  margin: 25px;
+
 }
 /* customizable snowflake styling */
 .snowflake {
