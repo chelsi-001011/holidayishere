@@ -32,10 +32,17 @@ function fetchThisMonthHd(month)
     console.log(response.data);
     var hdlist=response.data.holidays;
     hdlist.forEach(function (hd){
-      html += '<li class="list-group-item d-flex justify-content-between align-items-center">'+hd.name+ '<span class="badge badge-primary badge-pill">' +hd.date +' </span></li>';
+      html += '<li class=" list-group-item d-flex justify-content-between align-items-center">'+hd.name+ '<span class="badge badge-danger badge-pill">' +hd.date +' </span></li>';
       
     });
     document.getElementById("holidays").innerHTML = html;
+  });
+}
+
+function fetchGreetings(hd){
+  var html="";
+  axios.get("http://localhost:5000/api/v1/"+"christmas").then(function(response){
+    console.log(response.data);
   });
 }
 
@@ -73,10 +80,7 @@ const ThisMonth = () =>{
   return (
     <div >
       <h1 className="upcomhol">Upcoming holidays</h1>
-    <section id="holidays">
-      
-      
-
+    <section id="holidays" className="list-group-flush">
       </section>
       </div>
   )
@@ -97,6 +101,15 @@ const Heading = () =>{
   return (
     <section className="header">
       <h1>Here for the holidays</h1>
+    </section>
+  );
+}
+
+const Greetings = () =>{
+  fetchGreetings("diwali");
+  return (
+    <section className="greetings">
+
     </section>
   );
 }
@@ -138,6 +151,9 @@ function App() {
     </div>  
       <Heading></Heading>
       <Today></Today>
+      <div className="grid2">
+        <Greetings></Greetings>
+      </div>
       <div className="grid">
         <Recipe></Recipe>
         <ThisMonth></ThisMonth>
