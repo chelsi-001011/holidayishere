@@ -2,48 +2,10 @@ import './App.css';
 import { HolidayAPI } from 'holidayapi';
 import axios from 'axios';
 
-
 const currDate = new Date();
-// const holidaykey = '';
-const recipeAppId = '';
-const recipeAppKey= '';
-function addToHtml(add){
-  document.getElementById("todaysHd").innerHTML = add;
-}
-
-function fetchHoliday(month,date)
-{
- axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&day="+date+"&year=2019").then(function (response) {
-    // handle success
-    // console.log(response.data);
-    if(response.data.holidays.length !== 0)
-    {
-      var hdlist = response.data.holidays;
-      addToHtml(hdlist[0].name);
-    }
-    else{
-      addToHtml("Sorry, No holiday today :( ");
-    }
-});
-}
-
-function fetchThisMonthHd(month)
-{
-  var html="";
-  axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&year=2019").then(function (response) {
-    // handle success
-    console.log(response.data);
-    var hdlist=response.data.holidays;
-    hdlist.forEach(function (hd){
-      html+='<li>'+hd.name+'    '+hd.date+'</li>';
-    });
-    document.getElementById("holidays").innerHTML += html;
-  });
-}
-
 
 function fetchGifts(){
-  var html="";
+  var gifthtml="";
   var list = ["For the brunch addict: Dash Mini Waffle Maker",
               "For the pet owner: Pooch Selfie",
               " For the couple: A custom portrait",
@@ -82,10 +44,44 @@ function fetchGifts(){
   {
     var x = Math.random()*list.length;
     console.log(x);
-    html+='<li>'+list[Math.floor(x)]+'</li>';
+    gifthtml+='<li>'+list[Math.floor(x)]+'</li>';
   }
-  console.log(html); 
-  document.getElementById("gifts").innerHTML += html;
+  // document.getElementById("gifts").innerHTML += gifthtml;
+  document.write(gifthtml);
+}
+
+function addToHtml(add){
+  document.getElementById("todaysHd").innerHTML = add;
+}
+
+function fetchHoliday(month,date)
+{
+ axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&day="+date+"&year=2019").then(function (response) {
+    // handle success
+    // console.log(response.data);
+    if(response.data.holidays.length !== 0)
+    {
+      var hdlist = response.data.holidays;
+      addToHtml(hdlist[0].name);
+    }
+    else{
+      addToHtml("Sorry, No holiday today :( ");
+    }
+});
+}
+
+function fetchThisMonthHd(month)
+{
+  var html="";
+  axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&year=2019").then(function (response) {
+    // handle success
+    console.log(response.data);
+    var hdlist=response.data.holidays;
+    hdlist.forEach(function (hd){
+      html+='<li>'+hd.name+'    '+hd.date+'</li>';
+    });
+    document.getElementById("holidays").innerHTML += html;
+  });
 }
 
 function fetchRecipe(hd){
@@ -103,13 +99,11 @@ function fetchRecipe(hd){
   });
 }
 
-const Gift = () =>{
-  fetchGifts();
-  return(
-    <section id="gifts">
-    </section>
-  );
-}
+// const Gift = () =>{
+//   return(
+    
+//   );
+// }
 
 const Today = () => {
   fetchHoliday(currDate.getMonth()+1,currDate.getDate()+1);  
@@ -188,7 +182,9 @@ function App() {
       <Heading></Heading>
       <Today></Today>
       <div className="grid">
-        <Gift></Gift>
+         <section id="gifts">
+           {fetchGifts()}
+        </section>
         <Recipe></Recipe>
         <ThisMonth></ThisMonth>
       </div>

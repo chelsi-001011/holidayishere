@@ -165,15 +165,10 @@ body {
 #holidays {
   grid-area: thismonth;
 }
-#gifts {
-  grid-area: gift;
-}
 #food {
   grid-area: recipe;
 }
 .grid {
   display: grid;
-  grid-template-areas:
-    "gift thismonth"
-    "recipe thismonth";
+  grid-template-areas: "recipe thismonth";
 }
