@@ -29,7 +29,7 @@ function fetchThisMonthHd(month)
   var html="";
   axios.get("https://holidayapi.com/v1/holidays?pretty&key=7cfe185c-1544-4371-9b97-5d4babd3d097&country=IN&month="+month+"&year=2019").then(function (response) {
     // handle success
-    console.log(response.data);
+    // console.log(response.data);
     var hdlist=response.data.holidays;
     hdlist.forEach(function (hd){
       html += '<li class=" list-group-item d-flex justify-content-between align-items-center">'+hd.name+ '<span class="badge badge-danger badge-pill">' +hd.date +' </span></li>';
@@ -41,8 +41,23 @@ function fetchThisMonthHd(month)
 
 function fetchGreetings(hd){
   var html="";
-  axios.get("http://localhost:5000/api/v1/"+"christmas").then(function(response){
-    console.log(response.data);
+  axios.get("/api/v1/"+"christmas").then(function(response){
+    var greeting = response.data.greetings;
+    greeting.forEach(function(g){
+        html+='<li>'+g+'</li>';
+    });
+  document.getElementById("greetings").innerHTML = html;
+  });
+}
+
+function fetchEcards(hd){
+  var html="";
+  axios.get("/api/v1/"+hd).then(function(response){
+    var images = response.data.cardUrls;
+    images.forEach(function(i){
+        html+='<li><img src="'+i+'" width="200" height="200"></li>';
+    });
+  document.getElementById("image").innerHTML = html;
   });
 }
 
@@ -52,12 +67,12 @@ function fetchRecipe(hd){
     // handle success
     // console.log(response.data);
     var recipes=response.data.hits;
-    console.log(recipes);
+    // console.log(recipes);
     recipes.forEach(function (recipe){
 
       html+='<h4>'+recipe.recipe.label+'</h4><div class="recipe"><img className="recipeImg" src='+recipe.recipe.image+' width="200" height="200"><a class="btn btn-danger recipeLink" target="_blank" href="'+recipe.recipe.shareAs+'">Recipe</a></div>';
     });
-    console.log(html);
+    // console.log(html);
     document.getElementById("food").innerHTML = html;
   });
 }
@@ -87,7 +102,7 @@ const ThisMonth = () =>{
 }
 
 const Recipe = () =>{
-  fetchRecipe("Hanukkah");
+  fetchRecipe("Christmas");
   return (
     <div>
       <h1 className="upcomhol">Holiday Recipe's</h1>
@@ -106,11 +121,26 @@ const Heading = () =>{
 }
 
 const Greetings = () =>{
-  fetchGreetings("diwali");
+  fetchGreetings("christmas");
   return (
-    <section className="greetings">
+    <div>
+      <h1 className="upcomhol">Greetings</h1>
+    <section className="greetings" id="greetings">
 
     </section>
+    </div>
+  );
+}
+
+const Ecards = () =>{
+  fetchEcards("christmas");
+  return (
+    <div>
+      <h1 className="upcomhol">Ecards</h1>
+    <section className="greetings" id="image">
+
+    </section>
+    </div>
   );
 }
 
@@ -153,6 +183,7 @@ function App() {
       <Today></Today>
       <div className="grid2">
         <Greetings></Greetings>
+        <Ecards></Ecards>
       </div>
       <div className="grid">
         <Recipe></Recipe>

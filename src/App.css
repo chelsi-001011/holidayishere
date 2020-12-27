@@ -68,6 +68,19 @@ h2 {
   width: 50%;
   margin-bottom: 100px;
 }
+#greetings {
+  text-align: center;
+  color: #34a65f;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 0 auto;
+  background-color: white;
+  box-shadow: 2px 2px 2px white;
+  font-size: large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 #food {
   grid-area: recipe;
   text-align: center;
